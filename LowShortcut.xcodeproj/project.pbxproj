@@ -8,18 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		FBD508EC28573C770059678A /* LowShortcutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD508EB28573C770059678A /* LowShortcutApp.swift */; };
-		FBD508EE28573C770059678A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD508ED28573C770059678A /* ContentView.swift */; };
 		FBD508F028573C780059678A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD508EF28573C780059678A /* Assets.xcassets */; };
 		FBD508F328573C780059678A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD508F228573C780059678A /* Preview Assets.xcassets */; };
+		FBD508FC28573CCD0059678A /* ShortcutRecorder in Frameworks */ = {isa = PBXBuildFile; productRef = FBD508FB28573CCD0059678A /* ShortcutRecorder */; };
+		FBD50908285751A00059678A /* yabai-structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD50907285751A00059678A /* yabai-structs.swift */; };
+		FBD5090A285751B10059678A /* yabai.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD50909285751B10059678A /* yabai.swift */; };
+		FBD5090F285752130059678A /* handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD5090E285752130059678A /* handler.swift */; };
+		FBD50912285757980059678A /* SwiftSlash in Frameworks */ = {isa = PBXBuildFile; productRef = FBD50911285757980059678A /* SwiftSlash */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FBD508E828573C770059678A /* LowShortcut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LowShortcut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD508EB28573C770059678A /* LowShortcutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowShortcutApp.swift; sourceTree = "<group>"; };
-		FBD508ED28573C770059678A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FBD508EF28573C780059678A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FBD508F228573C780059678A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FBD508F428573C780059678A /* LowShortcut.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LowShortcut.entitlements; sourceTree = "<group>"; };
+		FBD50905285750F70059678A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FBD50907285751A00059678A /* yabai-structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "yabai-structs.swift"; sourceTree = "<group>"; };
+		FBD50909285751B10059678A /* yabai.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yabai.swift; sourceTree = "<group>"; };
+		FBD5090E285752130059678A /* handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = handler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +34,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBD508FC28573CCD0059678A /* ShortcutRecorder in Frameworks */,
+				FBD50912285757980059678A /* SwiftSlash in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,8 +61,9 @@
 		FBD508EA28573C770059678A /* LowShortcut */ = {
 			isa = PBXGroup;
 			children = (
+				FBD50906285751930059678A /* Yabai */,
+				FBD50905285750F70059678A /* Info.plist */,
 				FBD508EB28573C770059678A /* LowShortcutApp.swift */,
-				FBD508ED28573C770059678A /* ContentView.swift */,
 				FBD508EF28573C780059678A /* Assets.xcassets */,
 				FBD508F428573C780059678A /* LowShortcut.entitlements */,
 				FBD508F128573C780059678A /* Preview Content */,
@@ -67,6 +77,16 @@
 				FBD508F228573C780059678A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FBD50906285751930059678A /* Yabai */ = {
+			isa = PBXGroup;
+			children = (
+				FBD50907285751A00059678A /* yabai-structs.swift */,
+				FBD50909285751B10059678A /* yabai.swift */,
+				FBD5090E285752130059678A /* handler.swift */,
+			);
+			path = Yabai;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -85,6 +105,10 @@
 			dependencies = (
 			);
 			name = LowShortcut;
+			packageProductDependencies = (
+				FBD508FB28573CCD0059678A /* ShortcutRecorder */,
+				FBD50911285757980059678A /* SwiftSlash */,
+			);
 			productName = LowShortcut;
 			productReference = FBD508E828573C770059678A /* LowShortcut.app */;
 			productType = "com.apple.product-type.application";
@@ -113,6 +137,10 @@
 				Base,
 			);
 			mainGroup = FBD508DF28573C770059678A;
+			packageReferences = (
+				FBD508FA28573CCD0059678A /* XCRemoteSwiftPackageReference "ShortcutRecorder" */,
+				FBD50910285757980059678A /* XCRemoteSwiftPackageReference "SwiftSlash" */,
+			);
 			productRefGroup = FBD508E928573C770059678A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -139,8 +167,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBD508EE28573C770059678A /* ContentView.swift in Sources */,
+				FBD5090A285751B10059678A /* yabai.swift in Sources */,
+				FBD50908285751A00059678A /* yabai-structs.swift in Sources */,
 				FBD508EC28573C770059678A /* LowShortcutApp.swift in Sources */,
+				FBD5090F285752130059678A /* handler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +304,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LowShortcut/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -301,6 +332,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LowShortcut/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -336,6 +368,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FBD508FA28573CCD0059678A /* XCRemoteSwiftPackageReference "ShortcutRecorder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kentzo/ShortcutRecorder";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		FBD50910285757980059678A /* XCRemoteSwiftPackageReference "SwiftSlash" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tannerdsilva/SwiftSlash";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FBD508FB28573CCD0059678A /* ShortcutRecorder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBD508FA28573CCD0059678A /* XCRemoteSwiftPackageReference "ShortcutRecorder" */;
+			productName = ShortcutRecorder;
+		};
+		FBD50911285757980059678A /* SwiftSlash */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBD50910285757980059678A /* XCRemoteSwiftPackageReference "SwiftSlash" */;
+			productName = SwiftSlash;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FBD508E028573C770059678A /* Project object */;
 }
