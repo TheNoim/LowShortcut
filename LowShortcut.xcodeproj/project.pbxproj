@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB743469286F0A44008B9691 /* BlueSocketTestCommonLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = FB743468286F0A44008B9691 /* BlueSocketTestCommonLibrary */; };
+		FB74346B286F0A44008B9691 /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = FB74346A286F0A44008B9691 /* Socket */; };
 		FBD508EC28573C770059678A /* LowShortcutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD508EB28573C770059678A /* LowShortcutApp.swift */; };
 		FBD508F028573C780059678A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD508EF28573C780059678A /* Assets.xcassets */; };
 		FBD508F328573C780059678A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD508F228573C780059678A /* Preview Assets.xcassets */; };
@@ -35,7 +37,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBD508FC28573CCD0059678A /* ShortcutRecorder in Frameworks */,
+				FB743469286F0A44008B9691 /* BlueSocketTestCommonLibrary in Frameworks */,
 				FBD50912285757980059678A /* SwiftSlash in Frameworks */,
+				FB74346B286F0A44008B9691 /* Socket in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +112,8 @@
 			packageProductDependencies = (
 				FBD508FB28573CCD0059678A /* ShortcutRecorder */,
 				FBD50911285757980059678A /* SwiftSlash */,
+				FB743468286F0A44008B9691 /* BlueSocketTestCommonLibrary */,
+				FB74346A286F0A44008B9691 /* Socket */,
 			);
 			productName = LowShortcut;
 			productReference = FBD508E828573C770059678A /* LowShortcut.app */;
@@ -140,6 +146,7 @@
 			packageReferences = (
 				FBD508FA28573CCD0059678A /* XCRemoteSwiftPackageReference "ShortcutRecorder" */,
 				FBD50910285757980059678A /* XCRemoteSwiftPackageReference "SwiftSlash" */,
+				FB743467286F0A44008B9691 /* XCRemoteSwiftPackageReference "BlueSocket" */,
 			);
 			productRefGroup = FBD508E928573C770059678A /* Products */;
 			projectDirPath = "";
@@ -370,6 +377,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FB743467286F0A44008B9691 /* XCRemoteSwiftPackageReference "BlueSocket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kitura/BlueSocket";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		FBD508FA28573CCD0059678A /* XCRemoteSwiftPackageReference "ShortcutRecorder" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Kentzo/ShortcutRecorder";
@@ -389,6 +404,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FB743468286F0A44008B9691 /* BlueSocketTestCommonLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB743467286F0A44008B9691 /* XCRemoteSwiftPackageReference "BlueSocket" */;
+			productName = BlueSocketTestCommonLibrary;
+		};
+		FB74346A286F0A44008B9691 /* Socket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB743467286F0A44008B9691 /* XCRemoteSwiftPackageReference "BlueSocket" */;
+			productName = Socket;
+		};
 		FBD508FB28573CCD0059678A /* ShortcutRecorder */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FBD508FA28573CCD0059678A /* XCRemoteSwiftPackageReference "ShortcutRecorder" */;

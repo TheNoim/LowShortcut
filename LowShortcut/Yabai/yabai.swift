@@ -8,9 +8,14 @@
 import Foundation
 import AppKit
 import SwiftSlash
+import Socket
 
 actor Yabai {
     var displayMouseQueryCache: [Space]?;
+    
+    let lock = NSLock()
+    
+    let failureCode = "\u{07}";
     
     func getDisplayMouseQueryCache() async throws -> [Space] {
         if self.displayMouseQueryCache != nil {
@@ -38,7 +43,83 @@ actor Yabai {
         return decoded;
     }
     
+    func runYabaiCommandOnSocket(arguments: [String]) async throws -> Data {
+        return try await withCheckedThrowingContinuation({ continuation in
+            DispatchQueue(label: "yabai").async {
+                self.lock.lock()
+                defer {
+                    self.lock.unlock()
+                }
+                
+                var newArguments = arguments
+                
+                // remove the -m
+                newArguments.removeFirst()
+                
+                var payload = Data()
+
+                for arg in newArguments {
+                    guard var str = arg.data(using: .utf8) else {
+                        return
+                    }
+                    str.append(0)
+                    payload.append(str)
+                }
+                
+                do {
+                    let socket = try Socket.create(family: .unix, proto: .unix)
+                    
+                    defer {
+                        socket.close()
+                    }
+
+                    let userName = NSUserName()
+                    
+                    try socket.connect(to: "/tmp/yabai_\(userName).socket")
+                    
+                    try socket.setReadTimeout(value: 100)
+                    
+                    try socket.write(from: payload)
+                    
+                    shutdown(socket.socketfd, SHUT_WR);
+                    
+                    var read = 0
+                    var outputBuffer = NSMutableData()
+                    var dataBuffer = Data()
+                    
+                    repeat {
+                        read = try! socket.read(into: outputBuffer)
+                        
+                        dataBuffer.append(outputBuffer as Data)
+                        
+                        outputBuffer = NSMutableData()
+                    } while (read > 0)
+                    
+                    if dataBuffer.count < 1 {
+                        continuation.resume(returning: dataBuffer)
+                        return
+                    }
+                    
+                    let firstUnicodeCharacter = String(data: Data([dataBuffer[0]]), encoding: .utf8);
+                    
+                    guard let outputStr = String(data: dataBuffer, encoding: .utf8) else {
+                        throw MyError.runtimeError("Invalid data returned my yabai")
+                    }
+                    
+                    if self.failureCode == firstUnicodeCharacter {
+                        throw MyError.runtimeError(outputStr)
+                    }
+                    
+                    continuation.resume(returning: dataBuffer)
+                } catch {
+                    continuation.resume(throwing: error)
+                }
+            }
+        })
+    }
+    
     func runYabaiCommand(arguments: [String]) async throws -> Data {
+        return try await self.runYabaiCommandOnSocket(arguments: arguments);
         
         let command = try await Command(execute: "/usr/local/bin/yabai", arguments: arguments).runSync();
         
