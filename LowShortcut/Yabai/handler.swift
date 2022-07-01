@@ -71,7 +71,8 @@ class YabaiCommandHandler {
             }
         } catch {
             await self.yabai.clearCache();
-            throw error;
+//            throw error;
+            print("error: \(error)")
         }
         return;
     }

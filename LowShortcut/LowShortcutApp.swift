@@ -97,7 +97,7 @@ final class AppState: ObservableObject {
     init() {
         self.commandHandler = YabaiCommandHandler(yabai: self.yabai);
         
-        var nonAxGlobalShortcut: GlobalShortcutMonitor? = GlobalShortcutMonitor.shared
+        let nonAxGlobalShortcut: GlobalShortcutMonitor? = GlobalShortcutMonitor.shared
                 
         if let shortCutMonitor = nonAxGlobalShortcut {
                         

@@ -200,12 +200,11 @@ actor Yabai {
         return screenWithMouse;
     }
     
-    func getGrabbedWindow() async throws -> Int? {
+    func getGrabbedWindow() async -> Int? {
         var grabbedIndex: Int?;
         
         if let jsonData = try? await self.runYabaiCommand(arguments: ["-m", "query", "--windows", "--window", "mouse"]) {
-            let decoded = try JSONDecoder().decode(Window.self, from: jsonData);
-            if decoded.grabbed {
+            if let decoded = try? JSONDecoder().decode(Window.self, from: jsonData), decoded.grabbed {
                 grabbedIndex = decoded.id;
             }
         }
