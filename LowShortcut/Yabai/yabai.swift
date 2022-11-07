@@ -50,14 +50,14 @@ actor Yabai {
                 defer {
                     self.lock.unlock()
                 }
-                
+                                
                 var newArguments = arguments
                 
                 // remove the -m
                 newArguments.removeFirst()
                 
                 var payload = Data()
-
+                
                 for arg in newArguments {
                     guard var str = arg.data(using: .utf8) else {
                         return
@@ -65,6 +65,16 @@ actor Yabai {
                     str.append(0)
                     payload.append(str)
                 }
+                
+                payload.append(0);
+                
+                var newPayload = Data()
+                
+                withUnsafeBytes(of: payload.count) {
+                    newPayload.append(Data(bytes: $0.baseAddress!, count: 4))
+                }
+                
+                newPayload.append(payload);
                 
                 do {
                     let socket = try Socket.create(family: .unix, proto: .unix)
@@ -79,7 +89,7 @@ actor Yabai {
                     
                     try socket.setReadTimeout(value: 100)
                     
-                    try socket.write(from: payload)
+                    try socket.write(from: newPayload)
                     
                     shutdown(socket.socketfd, SHUT_WR);
                     
@@ -112,6 +122,7 @@ actor Yabai {
                     
                     continuation.resume(returning: dataBuffer)
                 } catch {
+                    print(error)
                     continuation.resume(throwing: error)
                 }
             }
